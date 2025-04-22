@@ -2,7 +2,7 @@ const express = require(`express`);
 const app = express();
 const port = 3000;
 
-const posts = require(`./posts.js`); // Importo l'array
+const posts = require(`./data/posts.js`); // Importo l'array
 
 const postsRouter = require(`./routers/router-post.js`) // Importazione router
 
