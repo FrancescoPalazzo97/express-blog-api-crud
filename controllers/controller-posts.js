@@ -2,13 +2,14 @@ const posts = require(`../data/posts`);
 
 const index = (req, res) => {
     const tag = req.query.tag; // Questo è il tag dalla query string (es. /posts?tag=javascript)
-    let filteredPosts = posts.filter(post =>
-        post.tags.some(postTag => postTag.toLowerCase().includes(tag.toLowerCase()))
-    );
-    console.log(filteredPosts);
-    console.log(tag);
-    res.json(filteredPosts); // Restituisci i post filtrati
-    // res.json(posts); // Restituisco i post in formato JSON
+    if (tag) {
+        let filteredPosts = posts.filter(post =>
+            post.tags.some(postTag => postTag.toLowerCase().includes(tag.toLowerCase()))
+        );
+        res.json(filteredPosts); // Restituisci i post filtrati
+    } else {
+        res.json(posts); // Restituisco i post in formato JSON
+    }
 }
 
 const show = (req, res) => {
