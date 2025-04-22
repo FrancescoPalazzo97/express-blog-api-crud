@@ -5,11 +5,20 @@ const index = (req, res) => {
 }
 
 const show = (req, res) => {
-    let id = req.params.id;
-    id >= 0 && id <= posts.length ?
-        res.json(posts[id - 1]) // Se il valore di req.params.id è compreso tra 0 e posts.length allora restituisco il singolo elemento
-        : // Altrimenti
-        res.send(`Il valore inserito non è valido`) // Restituisco un messaggio di errore
+    let id = parseInt(req.params.id);
+    const post = posts.find(post => post.id === id);
+
+    if (!post) {
+        res.status(404);
+
+        return res.json({
+            status: 404,
+            error: "Not Found",
+            message: "Post non trovato"
+        })
+    }
+
+    res.send(post);
 }
 
 const store = (req, res) => {
@@ -17,7 +26,7 @@ const store = (req, res) => {
 }
 
 const update = (req, res) => {
-    let id = req.params.id;
+    let id = parseInt(req.params.id);
     id >= 0 && id <= posts.length ? // Se il valore di req.params.id è compreso tra 0 e posts.length
         res.send(`L'elemento ${id} è stato totalmente modificato`)
         : // Altrimenti
@@ -25,7 +34,7 @@ const update = (req, res) => {
 }
 
 const modify = (req, res) => {
-    let id = req.params.id;
+    let id = parseInt(req.params.id);
     id >= 0 && id <= posts.length ? // Se il valore di req.params.id è compreso tra 0 e posts.length
         res.send(`L'elemento ${id} è stato parzialmente modificato`)
         : // Altrimenti
@@ -33,7 +42,7 @@ const modify = (req, res) => {
 }
 
 const destroy = (req, res) => {
-    let id = req.params.id;
+    let id = parseInt(req.params.id);
     id >= 0 && id <= posts.length ? // Se il valore di req.params.id è compreso tra 0 e posts.length
         res.send(`L'elemento ${id} è stato eliminato`)
         : // Altrimenti
