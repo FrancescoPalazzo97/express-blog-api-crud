@@ -61,7 +61,16 @@ const update = (req, res) => {
         })
     }
 
-    res.send(`L'elemento è stato totalmente modificato`);
+    const { title, content, image, tags } = req.body;
+
+    post.title = title;
+    post.content = content;
+    post.image = image;
+    post.tags = tags;
+
+    console.log(posts)
+
+    res.json(posts);
 }
 
 const modify = (req, res) => {
