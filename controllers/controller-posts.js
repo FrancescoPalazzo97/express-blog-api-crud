@@ -32,7 +32,8 @@ const show = (req, res) => {
 }
 
 const store = (req, res) => {
-    res.send(`Nuovo post creato`);
+    console.log(req.body)
+    res.send(`Nuovo post creato1`);
 }
 
 const update = (req, res) => {

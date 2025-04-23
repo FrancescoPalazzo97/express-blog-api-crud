@@ -8,6 +8,8 @@ const postsRouter = require(`./routers/router-post.js`) // Importazione router
 
 app.use(express.static(`public`));
 
+app.use(express.json());
+
 app.use('/posts', postsRouter); // Utilizzo postsRouter per impostare le rotte
 
 // Rotta base
