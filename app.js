@@ -4,7 +4,9 @@ const port = 3000;
 
 const posts = require(`./data/posts.js`); // Importo l'array
 
-const postsRouter = require(`./routers/router-post.js`) // Importazione router
+const postsRouter = require(`./routers/router-post.js`); // Importazione router
+
+const notFound = require(`./middlewares/notFound.js`); // Importo notFound
 
 app.use(express.static(`public`));
 
@@ -16,6 +18,8 @@ app.use('/posts', postsRouter); // Utilizzo postsRouter per impostare le rotte
 app.get('/', (req, res) => {
     res.send(`Benvenuto`) // Messaggio di benvenuto
 })
+
+app.use(notFound); // Utilizzo il middleware notFound
 
 app.listen(port, () => {
     console.log(`Il server è in ascolto`)
