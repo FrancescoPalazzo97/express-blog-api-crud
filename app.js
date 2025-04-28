@@ -7,6 +7,7 @@ const posts = require(`./data/posts.js`); // Importo l'array
 const postsRouter = require(`./routers/router-post.js`); // Importazione router
 
 const notFound = require(`./middlewares/notFound.js`); // Importo notFound
+const errorsHandler = require("./middlewares/errorsHandler.js"); // Importo errorsHandler
 
 app.use(express.static(`public`));
 
@@ -19,6 +20,7 @@ app.get('/', (req, res) => {
     res.send(`Benvenuto`) // Messaggio di benvenuto
 })
 
+app.use(errorsHandler); // Utilizzo il middleware errorsHandler
 app.use(notFound); // Utilizzo il middleware notFound
 
 app.listen(port, () => {

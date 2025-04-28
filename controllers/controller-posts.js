@@ -16,6 +16,8 @@ const show = (req, res) => {
     const id = parseInt(req.params.id);
     const tag = req.query.tag;
 
+    // pippo(); // Prova per verificare se il middleware errorsHandler funziona
+
     const post = posts.find(post => post.id === id);
 
     if (!post) {
